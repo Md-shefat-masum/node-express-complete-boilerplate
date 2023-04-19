@@ -1,0 +1,24 @@
+{
+  "name": "node-express-complete-boilerplate",
+  "version": "1.0.0",
+  "description": "node-express-complete-boilerplate with nodejs, express, ejs, mongo, session, cockies, and more",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Md-shefat-masum/node-express-complete-boilerplate.git"
+  },
+  "keywords": [
+    "nodeJs-boilerplate",
+    "Express-js-boilerplate",
+    "express-rest-api"
+  ],
+  "author": "Md-shefat-masum",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Md-shefat-masum/node-express-complete-boilerplate/issues"
+  },
+  "homepage": "https://github.com/Md-shefat-masum/node-express-complete-boilerplate#readme"
+}
