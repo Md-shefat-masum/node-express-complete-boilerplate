@@ -14,7 +14,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/json", async function (req, res) {
-    
+
     res.json({ msg: "welcome", user });
 });
 

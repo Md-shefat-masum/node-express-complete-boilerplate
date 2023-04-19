@@ -1,17 +1,18 @@
 module.exports = {
     home: async (req, res) => {
-        res.send("home");
+        return res.send("home");
     },
     about: async (req, res) => {
-        res.send("about");
+        return res.send("about");
     },
     contact: async (req, res) => {
-        res.send("contact");
+        return res.send("contact");
     },
     login: async (req, res) => {
-        res.send("login");
+        return res.render("auth/login");
     },
+
     signup: async (req, res) => {
-        res.send("signup");
+        return res.send("signup");
     },
 };
