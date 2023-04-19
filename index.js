@@ -14,11 +14,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/json", async function (req, res) {
-    let user = await db.UserRole.findMany({
-        include: {
-            users: true,
-        },
-    });
+    
     res.json({ msg: "welcome", user });
 });
 

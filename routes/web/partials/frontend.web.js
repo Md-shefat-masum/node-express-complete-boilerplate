@@ -1,19 +1,12 @@
 const express = require("express");
+const frontendController = require("../../../app/http/controllers/frontend/frontend.controller");
+const backendController = require("../../../app/http/controllers/backend/backend.controller");
 const router = express.Router();
 
 module.exports = router
-    .get("/", (req, res) => {
-        res.send("home page");
-    })
-    .get("/about", (req, res) => {
-        res.send("about page");
-    })
-    .get("/contact", (req, res) => {
-        res.send("contact page");
-    })
-    .get("/login", (req, res) => {
-        res.send("login page");
-    })
-    .get("/signup", (req, res) => {
-        res.send("signup page");
-    })
+    .get("/", frontendController.home)
+    .get("/about", frontendController.about)
+    .get("/contact", frontendController.contact)
+    .get("/login", frontendController.login)
+    .get("/signup", frontendController.signup)
+    .get("/dashboard", backendController.dashboard)
