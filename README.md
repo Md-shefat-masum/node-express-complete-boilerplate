@@ -2,6 +2,8 @@
 
 ## Manual Installation
 
+<iframe src="https://www.youtube.com/watch?v=7MS1Z_1c5CU" width="200"></iframe>
+
 Clone the repo:
 
 ```bash
