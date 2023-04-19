@@ -3,8 +3,7 @@ var express = require("express");
 var app = express();
 var bootstrap = require("./bootstrap/app");
 const config_app = require("./app/utils/config_app");
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient({});
+const { db } = require("./config/prisma");
 
 // boot server dependencies
 bootstrap(app);
@@ -15,7 +14,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/json", async function (req, res) {
-    let user = await prisma.UserRole.findMany({
+    let user = await db.UserRole.findMany({
         include: {
             users: true,
         },
@@ -28,15 +27,14 @@ app.get("*", function (req, res) {
 });
 
 if (require.main === module) {
-    prisma
-        .$connect()
+    db.$connect()
         .then(async () => {
             var server = http.createServer(app);
-            var port = config_app("port") || 3002;
+            var port = config_app("port") || 5000;
             server.listen(port, "127.0.0.1", function () {
                 console.log("Listening on %j", server.address());
                 console.log(
-                    `Server running on`,
+                    `Server is running on`,
                     "\x1b[33m",
                     ` ${config_app("url")}:${port} \n`,
                     "\x1b[0m"
@@ -45,11 +43,11 @@ if (require.main === module) {
             });
         })
         .then(async () => {
-            await prisma.$disconnect();
+            await db.$disconnect();
         })
         .catch(async (e) => {
             console.error(e);
-            await prisma.$disconnect();
+            await db.$disconnect();
             process.exit(1);
         });
 }

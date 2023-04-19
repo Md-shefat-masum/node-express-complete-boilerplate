@@ -28,10 +28,10 @@ model User {
 }
 
 model UserRole {
-    id     String   @id @default(auto()) @map("_id") @db.ObjectId
-    name   String
+    id    String @id @default(auto()) @map("_id") @db.ObjectId
+    name  String
     // each role has many users
-    users  User[]
+    users User[]
 
     @@map("user_roles")
 }

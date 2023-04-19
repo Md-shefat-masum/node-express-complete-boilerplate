@@ -3,6 +3,7 @@ const cors = require("../config/cors");
 const filesystems = require("../config/filesystems");
 const logging = require("../config/logging");
 const view = require("../config/view");
+const routes = require("../config/routes");
 
 const print_message = (text) => console.log("\x1b[32m","✔️\t"+text,"\x1b[0m");
 
@@ -24,6 +25,9 @@ module.exports = (app) => {
 
     print_message("cors setup");
     cors(app);
+
+    print_message("routes setup");
+    routes(app);
 
     console.log("\x1b[0m", "server starting");
 };
