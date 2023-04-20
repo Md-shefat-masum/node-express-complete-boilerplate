@@ -9,7 +9,8 @@
         "build:prod": "webpack --mode=production --node-env=production",
         "watch": "webpack --watch",
         "server": "nodemon index.js --node-env=JS_FROM_SERVER",
-        "serve": "webpack serve --node-env=serve"
+        "serve": "webpack serve --node-env=serve",
+        "generate-key": "node -e \"console.log('APP_KEY=base64:' + require('crypto').randomBytes(32).toString('base64'))\" >> .env"
     },
     "repository": {
         "type": "git",
@@ -52,8 +53,10 @@
         "workbox-webpack-plugin": "^6.5.4"
     },
     "dependencies": {
+        "crypto": "^1.0.1",
         "dotenv": "^16.0.3",
         "ejs": "^3.1.9",
-        "express": "^4.18.2"
+        "express": "^4.18.2",
+        "rotating-file-stream": "^3.1.0"
     }
 }

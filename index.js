@@ -1,18 +1,18 @@
 var http = require("http");
 var express = require("express");
 var app = express();
-app.use(require("morgan")("short"));
-
-require("console-stamp")(console, "HH:MM:ss.l");
-// require('./bootstrap/webpack_hot_reload')(app)
+var bootstrap = require('./bootstrap/app');
+// boot server dependencies
+bootstrap(app);
 
 // Do anything you like with the rest of your express application.
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/resources/views');
-app.use(express.static(__dirname + '/public'));
-
 app.get("/", function (req, res) {
     res.render('welcome');
+});
+
+app.get("*", function (req, res) {
+    // res.render('welcome');
+    res.status(404).json("notfound");
 });
 
 // app.listen(3002,()=>{
