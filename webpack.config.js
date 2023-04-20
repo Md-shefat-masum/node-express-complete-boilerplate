@@ -48,7 +48,7 @@ const config = {
     plugins: [
         // new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
-            filename: "../css/[name].css",
+            filename: "../css/app.css",
         }),
         // Add your plugins here
     ],
