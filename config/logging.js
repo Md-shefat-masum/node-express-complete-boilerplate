@@ -16,9 +16,13 @@ morgan.token("date", function () {
     return new Date().toDateString() + " " + new Date().toLocaleTimeString();
 });
 
+morgan.token("req", function (req) {
+    return req.get('Origin');
+});
+
 module.exports = (app) => {
     app.use(
-        morgan("combined", {
+        morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":req[header]" ":user-agent"', {
             stream: accessLogStream,
             skip: function (req, res) {
                 return res.statusCode < 400;

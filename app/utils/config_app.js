@@ -1,2 +1,2 @@
 const app = require("../../config/app");
-module.exports = app;
+module.exports = (key) => app[key];

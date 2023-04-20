@@ -2,6 +2,8 @@ var http = require("http");
 var express = require("express");
 var app = express();
 var bootstrap = require('./bootstrap/app');
+const config_app = require("./app/utils/config_app");
+
 // boot server dependencies
 bootstrap(app);
 
@@ -10,17 +12,19 @@ app.get("/", function (req, res) {
     res.render('welcome');
 });
 
+app.get("/json", function (req, res) {
+    res.json({msg: 'welcome'});
+});
+
 app.get("*", function (req, res) {
-    // res.render('welcome');
     res.status(404).json("notfound");
 });
 
-// app.listen(3002,()=>{
-//     console.log("Listening on %j", 3002);
-// })
+
 if (require.main === module) {
     var server = http.createServer(app);
     server.listen(process.env.PORT || 3002, "localhost", function () {
         console.log("Listening on %j", server.address());
+        console.log(`Server running on ${config_app('url')}:${config_app('port')} \n`);
     });
 }
