@@ -8,7 +8,7 @@ const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 // const { VueLoaderPlugin } = require("vue-loader");
 
 const isProduction = process.env.NODE_ENV == "production";
-const JS_FROM_SERVER = process.env.NODE_ENV == "JS_FROM_SERVER" || false;
+const JS_FROM_SERVER = process.env.npm_lifecycle_event == "server" || false;
 const WEBPACK_HTML_SERVE = process.env.NODE_ENV == "serve" || false;
 
 const config = {
@@ -109,6 +109,7 @@ const config = {
 };
 
 module.exports = () => {
+
     if (JS_FROM_SERVER) {
         console.log("\n\n js is running from the server \n\n");
         config.entry.index.push(
@@ -119,7 +120,7 @@ module.exports = () => {
     if (WEBPACK_HTML_SERVE) {
         config.plugins.push(
             new HtmlWebpackPlugin({
-                template: path.resolve(__dirname, "public/index.html"),
+                template: path.resolve(__dirname, "public/test.html"),
                 // filename: path.resolve(__dirname, "public/index.html"), //output directory
             })
         );

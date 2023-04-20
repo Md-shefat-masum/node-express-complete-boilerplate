@@ -1,1 +1,0 @@
-{"version":3,"file":"../css/appcss.css","mappings":";;;AAAA;EACI;EACA;EAAA;EAAA;EACA;EACA;EAAA;EAAA;AACJ,C","sources":["webpack://node-express-complete-boilerplate/./resources/scss/app.scss"],"sourcesContent":["ul{\n    display: grid;\n    transition: all linear .3s;\n    border: 1px solid red;\n    display: flex;\n}\n"],"names":[],"sourceRoot":""}
