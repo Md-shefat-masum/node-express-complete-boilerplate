@@ -4,21 +4,26 @@ const filesystems = require("../config/filesystems");
 const logging = require("../config/logging");
 const view = require("../config/view");
 
+const print_message = (text) => console.log("\x1b[32m","✔️\t"+text,"\x1b[0m");
+
+console.log(" 🧣     boot strapping");
+
 module.exports = (app) => {
-    console.log("\n log setup \n");
+
+    print_message("log setup");
     logging(app);
 
-    console.log("\n view engine setup \n");
+    print_message("view engine setup");
     view(app);
 
-    console.log("\n static assets file setup \n");
+    print_message("static assets file setup");
     filesystems.static(app);
 
-    console.log("\n body parser setup \n");
+    print_message("body parser setup");
     body_parser(app);
 
-    console.log("\n cors setup \n");
+    print_message("cors setup");
     cors(app);
 
-    console.log("\n\n");
-}
+    console.log("\x1b[0m", "server starting");
+};
