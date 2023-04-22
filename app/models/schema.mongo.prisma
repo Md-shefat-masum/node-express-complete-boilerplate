@@ -20,9 +20,17 @@ model User {
     password   String?
     createdAt  DateTime @default(now())
     updatedAt  DateTime @default(now())
+    role       UserRole @relation(fields: [userRoleId], references: [id])
+    userRoleId String   @db.ObjectId
+
+    @@map("users")
 }
 
-enum Role {
-    USER
-    ADMIN
+model UserRole {
+    id     String   @id @default(auto()) @map("_id") @db.ObjectId
+    name   String
+    userIds String[] @db.ObjectId
+    users  User[]
+
+    @@map("user_roles")
 }

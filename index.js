@@ -3,6 +3,8 @@ var express = require("express");
 var app = express();
 var bootstrap = require("./bootstrap/app");
 const config_app = require("./app/utils/config_app");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient({});
 
 // boot server dependencies
 bootstrap(app);
@@ -21,15 +23,28 @@ app.get("*", function (req, res) {
 });
 
 if (require.main === module) {
-    var server = http.createServer(app);
-    server.listen(process.env.PORT || 3002, "localhost", function () {
-        console.log("Listening on %j", server.address());
-        console.log(
-            `Server running on`,
-            "\x1b[33m",
-            ` ${config_app("url")}:${config_app("port")} \n`,
-            "\x1b[0m"
-        );
-        console.log("\x1b[0m", "");
-    });
+    prisma
+        .$connect()
+        .then(async () => {
+            var server = http.createServer(app);
+            var port = config_app("port") || 3002;
+            server.listen(port, "127.0.0.1", function () {
+                console.log("Listening on %j", server.address());
+                console.log(
+                    `Server running on`,
+                    "\x1b[33m",
+                    ` ${config_app("url")}:${port} \n`,
+                    "\x1b[0m"
+                );
+                console.log("\x1b[0m", "");
+            });
+        })
+        .then(async () => {
+            await prisma.$disconnect();
+        })
+        .catch(async (e) => {
+            console.error(e);
+            await prisma.$disconnect();
+            process.exit(1);
+        });
 }
