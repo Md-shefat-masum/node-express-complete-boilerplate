@@ -14,8 +14,13 @@ app.get("/", function (req, res) {
     res.render("welcome");
 });
 
-app.get("/json", function (req, res) {
-    res.json({ msg: "welcome" });
+app.get("/json", async function (req, res) {
+    let user = await prisma.UserRole.findMany({
+        include: {
+            users: true,
+        },
+    });
+    res.json({ msg: "welcome", user });
 });
 
 app.get("*", function (req, res) {

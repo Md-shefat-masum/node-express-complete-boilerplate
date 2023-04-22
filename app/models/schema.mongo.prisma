@@ -20,6 +20,7 @@ model User {
     password   String?
     createdAt  DateTime @default(now())
     updatedAt  DateTime @default(now())
+    //each user has one role
     role       UserRole @relation(fields: [userRoleId], references: [id])
     userRoleId String   @db.ObjectId
 
@@ -29,7 +30,7 @@ model User {
 model UserRole {
     id     String   @id @default(auto()) @map("_id") @db.ObjectId
     name   String
-    userIds String[] @db.ObjectId
+    // each role has many users
     users  User[]
 
     @@map("user_roles")

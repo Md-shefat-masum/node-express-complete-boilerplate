@@ -10,7 +10,9 @@
         "watch": "webpack --watch",
         "server": "nodemon index.js --node-env=JS_FROM_SERVER",
         "serve": "webpack serve --node-env=serve",
-        "generate-key": "node -e \"console.log('APP_KEY=base64:' + require('crypto').randomBytes(32).toString('base64'))\" >> .env"
+        "generate-key": "node -e \"console.log('APP_KEY=base64:' + require('crypto').randomBytes(32).toString('base64'))\" >> .env",
+        "db:generate": "prisma generate",
+        "db:seed": "node database/seeders"
     },
     "prisma": {
         "schema": "./app/models/schema.mongo.prisma"

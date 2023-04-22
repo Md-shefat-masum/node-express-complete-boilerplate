@@ -13,4 +13,5 @@ var urlencodedParser = bodyParser.urlencoded({
 module.exports = (app) => {
     app.use(jsonParser);
     app.use(urlencodedParser);
+    app.set("json spaces", 3);
 };
