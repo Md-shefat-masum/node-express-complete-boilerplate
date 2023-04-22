@@ -12,6 +12,9 @@
         "serve": "webpack serve --node-env=serve",
         "generate-key": "node -e \"console.log('APP_KEY=base64:' + require('crypto').randomBytes(32).toString('base64'))\" >> .env"
     },
+    "prisma": {
+        "schema": "./app/models/schema.mongo.prisma"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Md-shefat-masum/node-express-complete-boilerplate.git"
