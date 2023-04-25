@@ -1,5 +1,5 @@
 module.exports = {
     dashboard: async (req, res) => {
-        res.send('dashboard');
+        return res.render("backend/dashboard");
     },
 };

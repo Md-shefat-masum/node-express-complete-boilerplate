@@ -11,6 +11,7 @@ module.exports = router
 
     .get("/login", frontendController.login)
     .post("/login", authController.login_submit)
+    .post("/logout", authController.logout)
 
     .get("/signup", frontendController.signup)
 

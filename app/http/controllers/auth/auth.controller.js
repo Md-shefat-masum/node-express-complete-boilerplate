@@ -32,6 +32,18 @@ module.exports = {
         }
         console.log(req.body, validate);
 
-        return res.send("submit");
+        req.session.user = {
+            name: "admin",
+            pic: "avatar.png",
+        }
+        req.session.isAuth = true;
+
+        return res.redirect('/dashboard')
     },
+
+    logout: function(req,res){
+        req.session.user = {}
+        req.session.isAuth = false;
+        return res.redirect('/')
+    }
 };
